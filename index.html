@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Yaser | Back-End .NET Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === التنسيق العام واللون الأسود الفاخر === */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #0b0b0b; /* خلفية سوداء عميقة */
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* === تنسيق الأقسام === */
+        header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 50px; flex-wrap: wrap;}
+        .logo { font-size: 28px; font-weight: 700; color: #ffffff; letter-spacing: 1px; }
+        .logo span { color: #d4af37; /* لون ذهبي للتميز */ }
+        .lang-switch button { background: none; border: 1px solid #444; color: #aaa; padding: 5px 12px; border-radius: 4px; cursor: pointer; margin-left: 5px; transition: 0.3s;}
+        .lang-switch button:hover, .lang-switch button.active { border-color: #d4af37; color: #fff; }
+
+        /* === قسم الهيرو (المقدمة) === */
+        .hero { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+        .hero-content { flex: 1; }
+        .hero h1 { font-size: 3rem; margin-bottom: 5px; color: #fff; font-weight: 600; }
+        .hero h1 span { color: #d4af37; }
+        
+        /* === التعديل الجديد: العنوان الوظيفي === */
+        .job-title { 
+            font-size: 1.3rem; 
+            color: #d4af37; 
+            font-weight: 400; 
+            margin-bottom: 20px; 
+            letter-spacing: 0.5px;
+        }
+        .job-title i { color: #666; font-style: normal; margin: 0 5px; } /* فاصل بسيط */
+
+        .hero p { font-size: 1.1rem; color: #a0a0a0; margin-bottom: 25px; max-width: 600px; }
+        .btn { display: inline-block; padding: 12px 28px; background: #d4af37; color: #000; text-decoration: none; font-weight: 600; border-radius: 6px; transition: 0.3s; border: none;}
+        .btn:hover { background: #ffffff; transform: translateY(-3px); }
+        .social-links { margin-top: 25px; display: flex; gap: 20px; }
+        .social-links a { color: #a0a0a0; text-decoration: none; font-size: 0.95rem; transition: 0.3s; }
+        .social-links a:hover { color: #d4af37; }
+        .hero-img { flex: 1; text-align: center; }
+        .hero-img img { width: 280px; height: 280px; object-fit: cover; border-radius: 50%; border: 4px solid #222; box-shadow: 0 10px 40px rgba(212, 175, 55, 0.1); }
+
+        /* === قسم المهارات === */
+        .skills-section { margin-top: 60px; }
+        .skills-section h2 { color: #fff; border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 20px; }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag { background: #1a1a1a; color: #ccc; padding: 8px 16px; border-radius: 20px; border: 1px solid #333; font-size: 0.9rem; }
+        .skill-tag.highlight { border-color: #d4af37; }
+
+        /* === قسم المشاريع === */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        .project-card { background: #141414; padding: 25px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
+        .project-card:hover { transform: translateY(-5px); border-color: #d4af37; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .project-title { font-size: 1.3rem; color: #fff; font-weight: 600; margin-bottom: 10px; }
+        .project-title span { color: #d4af37; }
+        .project-desc { color: #aaa; font-size: 0.95rem; margin-bottom: 15px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+        .tag { background: #222; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; color: #ccc; }
+        .project-links { margin-top: 15px; }
+        .project-links a { color: #d4af37; margin-right: 15px; text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .project-links a:hover { text-decoration: underline; }
+
+        /* === قسم الشهادات === */
+        .certs-section { margin-top: 60px; }
+        .certs-section h2 { color: #fff; border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 20px; }
+        .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .cert-card { background: #141414; padding: 20px; border-radius: 8px; border-left: 4px solid #d4af37; display: flex; align-items: center; gap: 15px; }
+        .cert-card img { width: 60px; height: 60px; object-fit: contain; border-radius: 4px; background: #fff; padding: 2px; }
+        .cert-info h4 { color: #fff; font-size: 1rem; margin-bottom: 5px; }
+        .cert-info p { color: #888; font-size: 0.85rem; }
+
+        /* === قسم الاتصال === */
+        .contact-section { margin-top: 60px; text-align: center; }
+        .contact-section h2 { color: #fff; border-bottom: 2px solid #222; padding-bottom: 10px; margin-bottom: 25px; display: inline-block; }
+        .contact-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .contact-item { background: #141414; padding: 20px 30px; border-radius: 8px; border: 1px solid #222; display: flex; align-items: center; gap: 12px; transition: 0.3s; }
+        .contact-item:hover { border-color: #d4af37; transform: translateY(-3px); }
+        .contact-item i { font-size: 1.5rem; color: #d4af37; }
+        .contact-item a, .contact-item span { color: #e0e0e0; text-decoration: none; font-size: 1.1rem; letter-spacing: 0.5px; }
+
+        /* === الفوتر === */
+        footer { margin-top: 60px; text-align: center; border-top: 1px solid #222; padding-top: 30px; color: #555; font-size: 0.9rem; }
+
+        /* === إدارة اللغات === */
+        .lang-ar, .lang-en { display: none; }
+        .lang-ar.active, .lang-en.active { display: block; }
+        .lang-ar.active-flex, .lang-en.active-flex { display: flex; }
+        .lang-ar.active-grid, .lang-en.active-grid { display: grid; }
+
+        /* === التجاوب مع الموبايل === */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { margin: 0 auto 25px auto; }
+            .hero-img img { width: 200px; height: 200px; }
+            .certs-grid { grid-template-columns: 1fr; }
+            .contact-grid { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- الهيدر واختيار اللغة -->
+        <header>
+            <div class="logo">Ahmed <span>Yaser</span></div>
+            <div class="lang-switch">
+                <button onclick="switchLang('en')" id="btn-en" class="active">English</button>
+                <button onclick="switchLang('ar')" id="btn-ar">العربية</button>
+            </div>
+        </header>
+
+        <!-- ================= المحتوى الإنجليزي ================= -->
+        <div id="content-en" class="lang-en active">
+            
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Ahmed Yaser</h1>
+                    <!-- التعديل: العنوان الوظيفي بالإنجليزي -->
+                    <div class="job-title">Back-End .NET Developer <i>|</i> System Architect</div>
+                    
+                    <p>I design scalable system blueprints and build robust .NET applications. Passionate about integrating AI microservices to solve complex challenges.</p>
+                    <a href="#projects-en" class="btn">View My Work</a>
+                    <div class="social-links">
+                        <a href="https://github.com/ahmed19104" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/ahmed-yaser-7160322a4/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <!-- صورة أحمد ياسر -->
+                    <img src="E:\New folder (15)\me.jpg.jpeg" alt="Ahmed Yaser">
+                </div>
+            </section>
+
+            <section class="skills-section">
+                <h2>Core Skills & Approach</h2>
+                <div class="skills-grid">
+                    <span class="skill-tag highlight">Clean Architecture</span>
+                    <span class="skill-tag highlight">AI Integration (Gemini)</span>
+                    <span class="skill-tag">C# / .NET 8</span>
+                    <span class="skill-tag">ASP.NET MVC / Web API</span>
+                    <span class="skill-tag">Entity Framework / LINQ</span>
+                    <span class="skill-tag">SignalR / Hangfire</span>
+                    <span class="skill-tag">SQL Server / Code-First</span>
+                    <span class="skill-tag">JWT / Security</span>
+                    <span class="skill-tag">System Design & Blueprints</span>
+                </div>
+            </section>
+
+            <section id="projects-en" class="projects-section" style="margin-top: 60px;">
+                <h2 style="color:#fff; border-bottom: 2px solid #222; padding-bottom: 10px;">Key Projects</h2>
+                <div class="projects-grid">
+                    
+                    <!-- مشروع أثر -->
+                    <div class="project-card">
+                        <div class="project-title"><span>Ather</span> - Smart Tourism</div>
+                        <div class="project-desc">
+                            Built with ASP.NET Core 8.0 & Clean Architecture. Designed the complete system blueprint before coding. Features include real-time messaging (SignalR), automated scheduling (Hangfire), and an AI microservice (Gemini API & Python) for monument recognition.
+                        </div>
+                        <div class="project-tags">
+                            <span class="tag">.NET 8</span>
+                            <span class="tag">Clean Arch</span>
+                            <span class="tag">AI (Gemini)</span>
+                            <span class="tag">SignalR</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ather.runasp.net/" target="_blank">Live Demo</a>
+                            <a href="https://github.com/ahmed19104/Graduation-Project.git" target="_blank">Source Code</a>
+                        </div>
+                    </div>
+
+                    <!-- مشروع السينما -->
+                    <div class="project-card">
+                        <div class="project-title"><span>MoviesCLS</span> - Cinema Management</div>
+                        <div class="project-desc">
+                            Full-stack MVC e-commerce platform for cinema ticket sales. Focused on database integrity using Code-First migrations with complex many-to-many relationships. Reduced manual processing time by 15% with robust inventory tracking.
+                        </div>
+                        <div class="project-tags">
+                            <span class="tag">MVC</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">Swagger</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ahmed19104/Project.git" target="_blank">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="certs-section">
+                <h2>Certifications & Honors</h2>
+                <div class="certs-grid">
+                    <div class="cert-card">
+                        <!-- ضع صورة شهادة ITI هنا -->
+                        <img src="E:\New folder (15)\iti.jpg.jpeg" alt="ITI Cert">
+                        <div class="cert-info">
+                            <h4>ITI - Web Development (.NET)</h4>
+                            <p>120 Hours | Aug - Oct 2025</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <!-- ضع صورة شهادة الجامعة هنا -->
+                        <img src="E:\New folder (15)\uni.jpg.jpeg" alt="University Cert">
+                        <div class="cert-info">
+                            <h4>Capital University - Academic Achievement</h4>
+                            <p>10th Place, 4th Level (2025/2026)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الاتصال - إنجليزي -->
+            <section class="contact-section">
+                <h2>Get In Touch</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <a href="tel:+201143327070">+20 011 433 270 70</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <a href="mailto:a3939361@gmail.com">a3939361@gmail.com</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                &copy; 2026 Ahmed Yaser. Built with passion for .NET & AI.
+            </footer>
+        </div>
+
+
+        <!-- ================= المحتوى العربي ================= -->
+        <div id="content-ar" class="lang-ar">
+            
+            <section class="hero">
+                <div class="hero-content" dir="rtl">
+                    <h1>أحمد ياسر</h1>
+                    <!-- التعديل: العنوان الوظيفي بالعربي -->
+                    <div class="job-title">مطور تطبيقات باك-إند (.NET) <i>|</i> مهندس معماري نظم</div>
+
+                    <p>أصمم المخططات المعمارية القابلة للتطوير وأبني تطبيقات .NET قوية. شغوفي هو دمج الذكاء الاصطناعي لحل التحديات التقنية المعقدة.</p>
+                    <a href="#projects-ar" class="btn">تصفح أعمالي</a>
+                    <div class="social-links" dir="ltr">
+                        <a href="https://github.com/ahmed19104" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/ahmed-yaser-7160322a4/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <!-- صورة أحمد ياسر -->
+                    <img src="E:\New folder (15)\me.jpg.jpeg" alt="أحمد ياسر">
+                </div>
+            </section>
+
+            <section class="skills-section" dir="rtl">
+                <h2>المهارات الأساسية ومنهجية العمل</h2>
+                <div class="skills-grid">
+                    <span class="skill-tag highlight">Clean Architecture (المعمارية النظيفة)</span>
+                    <span class="skill-tag highlight">دمج الذكاء الاصطناعي (Gemini)</span>
+                    <span class="skill-tag">C# / .NET 8</span>
+                    <span class="skill-tag">ASP.NET MVC / Web API</span>
+                    <span class="skill-tag">Entity Framework / LINQ</span>
+                    <span class="skill-tag">SignalR / Hangfire</span>
+                    <span class="skill-tag">SQL Server / Code-First</span>
+                    <span class="skill-tag">JWT / الأمان</span>
+                    <span class="skill-tag">تصميم الأنظمة والمخططات</span>
+                </div>
+            </section>
+
+            <section id="projects-ar" class="projects-section" style="margin-top: 60px;" dir="rtl">
+                <h2 style="color:#fff; border-bottom: 2px solid #222; padding-bottom: 10px;">أبرز المشاريع</h2>
+                <div class="projects-grid">
+                    
+                    <!-- مشروع أثر - عربي -->
+                    <div class="project-card">
+                        <div class="project-title"><span>أثر</span> - منصة السياحة الذكية</div>
+                        <div class="project-desc">
+                            تم البناء باستخدام ASP.NET Core 8.0 والمعمارية النظيفة. قمت برسم التصميم الكامل للنظام قبل كتابة الكود. تشمل المميزات التواصل اللحظي (SignalR)، الجدولة الآلية (Hangfire)، وميكروسيرفس ذكي (Gemini API) للتعرف على المعالم الأثرية.
+                        </div>
+                        <div class="project-tags">
+                            <span class="tag">.NET 8</span>
+                            <span class="tag">Clean Arch</span>
+                            <span class="tag">ذكاء اصطناعي</span>
+                            <span class="tag">SignalR</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://ather.runasp.net/" target="_blank">عرض مباشر</a>
+                            <a href="https://github.com/ahmed19104/Graduation-Project.git" target="_blank">الكود المصدري</a>
+                        </div>
+                    </div>
+
+                    <!-- مشروع السينما - عربي -->
+                    <div class="project-card">
+                        <div class="project-title"><span>MoviesCLS</span> - نظام إدارة السينما</div>
+                        <div class="project-desc">
+                            منصة تجارة إلكترونية كاملة (MVC) لبيع تذاكر السينما. ركزت على سلامة قاعدة البيانات باستخدام Code-First مع علاقات معقدة. ساهم النظام في تقليل وقت المعالجة اليدوي بنسبة 15%.
+                        </div>
+                        <div class="project-tags">
+                            <span class="tag">MVC</span>
+                            <span class="tag">SQL Server</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">Swagger</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ahmed19104/Project.git" target="_blank">الكود المصدري</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="certs-section" dir="rtl">
+                <h2>الشهادات والتكريم</h2>
+                <div class="certs-grid">
+                    <div class="cert-card">
+                        <!-- ضع صورة شهادة ITI هنا -->
+                        <img src="E:\New folder (15)\iti.jpg.jpeg" alt="شهادة ITI">
+                        <div class="cert-info">
+                            <h4>ITI - تطوير الويب (.NET)</h4>
+                            <p>120 ساعة | أغسطس - أكتوبر 2025</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <!-- ضع صورة شهادة الجامعة هنا -->
+                        <img src="E:\New folder (15)\uni.jpg.jpeg" alt="شهادة الجامعة">
+                        <div class="cert-info">
+                            <h4>جامعة العاصمة - شهادة تفوق أكاديمي</h4>
+                            <p>المركز العاشر - المستوى الرابع (2025/2026)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الاتصال - عربي -->
+            <section class="contact-section" dir="rtl">
+                <h2>تواصل معي</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <a href="tel:+201143327070">+20 011 433 270 70</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <a href="mailto:a3939361@gmail.com">a3939361@gmail.com</a>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                &copy; 2026 أحمد ياسر. بني بشغف لـ .NET والذكاء الاصطناعي.
+            </footer>
+        </div>
+
+    </div>
+
+    <!-- === سكربت التبديل بين اللغات === -->
+    <script>
+        function switchLang(lang) {
+            // إخفاء الكل
+            document.getElementById('content-en').className = 'lang-en';
+            document.getElementById('content-ar').className = 'lang-ar';
+            
+            // إظهار المطلوب
+            if(lang === 'en') {
+                document.getElementById('content-en').className = 'lang-en active';
+                document.getElementById('btn-en').classList.add('active');
+                document.getElementById('btn-ar').classList.remove('active');
+            } else {
+                document.getElementById('content-ar').className = 'lang-ar active';
+                document.getElementById('btn-ar').classList.add('active');
+                document.getElementById('btn-en').classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
